@@ -20,3 +20,7 @@ This is a new implementation of a chia plotter which is designed as a processing
  
 ## Results
 ![4](https://user-images.githubusercontent.com/86047703/122366502-267aa200-cf4b-11eb-97bc-aeb9c97a68cf.PNG)
+ 
+## Dependencies
+* cmake (>=3.14)
+* libsodium-dev
