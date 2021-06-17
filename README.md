@@ -18,7 +18,8 @@ This is a new implementation of a chia plotter which is designed as a processing
     Number of buckets (default = 256)
  
 ## Results
-![5](https://user-images.githubusercontent.com/86047703/122373639-2c738180-cf51-11eb-8367-4e9fb24b424d.PNG)
+![6](https://user-images.githubusercontent.com/86047703/122376086-5af25c00-cf53-11eb-9cbc-bf74a022e578.PNG)
+
 
 ## Download
    * https://github.com/mxrytj/ChiaRAMPlot/releases
