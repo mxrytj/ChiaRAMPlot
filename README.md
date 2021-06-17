@@ -18,6 +18,7 @@ This is a new implementation of a chia plotter which is designed as a processing
     Number of buckets (default = 256)
  
 ## Results
+ Total plot creation time was 2536.95 sec
 ![6](https://user-images.githubusercontent.com/86047703/122376086-5af25c00-cf53-11eb-9cbc-bf74a022e578.PNG)
 
 
