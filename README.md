@@ -7,7 +7,7 @@ This is a new implementation of a chia plotter which is designed as a processing
   * Select 2nd Temporary Directory   
     Temporary directory 2, needs ~110 GiB
   * Select Final Directory  
-    Final directory (default = <tmpdir>)
+    Final directory
   * Pool Public Key (48 bytes)
   * Farmer Public Key (48 bytes)
   * Choose Number of Plots
