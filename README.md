@@ -13,10 +13,8 @@ This is a new implementation of a chia plotter which is designed as a processing
     Temporary directory 2, needs ~110 GiB
   * Select Final Directory  
     Final directory (default = <tmpdir>)
-  * Pool Public Key
-    Pool Public Key (48 bytes)
-  * Farmer Public Key 
-    Farmer Public Key (48 bytes)
+  * Pool Public Key (48 bytes)
+  * Farmer Public Key (48 bytes)
  
 ## Results
 ![4](https://user-images.githubusercontent.com/86047703/122366502-267aa200-cf4b-11eb-97bc-aeb9c97a68cf.PNG)
