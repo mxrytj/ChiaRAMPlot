@@ -20,9 +20,9 @@ This is a new implementation of a chia plotter which is designed as a processing
  
 ## Results
 ![12](https://user-images.githubusercontent.com/86047703/126137558-26dc7f57-5ec2-4eeb-a29b-7d004be50fe2.PNG)
-## How to Get Pool Contract Address
-![444](https://user-images.githubusercontent.com/86047703/126137755-6c99eb09-4285-4fc7-834a-88db395c7e58.PNG)
 
+## How to Get Pool Contract Address
+![444](https://user-images.githubusercontent.com/86047703/126138171-89eb8ed4-dd4b-4664-9268-18b055830f6e.PNG)
 
 ## Download
    * https://github.com/mxrytj/ChiaRAMPlot/releases
