@@ -61,7 +61,6 @@ BOOL CchiaplotterDlg::OnInitDialog()
 	SetIcon(m_hIcon, TRUE);			
 	SetIcon(m_hIcon, FALSE);		
 
-
 	m_plots.AddString(L"1");
 	m_plots.AddString(L"2");
 	m_plots.AddString(L"3");
@@ -82,15 +81,22 @@ BOOL CchiaplotterDlg::OnInitDialog()
 	m_plots.AddString(L"18");
 	m_plots.AddString(L"19");
 	m_plots.AddString(L"20");
-	m_plots.AddString(L"21");
-	m_plots.AddString(L"22");
-	m_plots.AddString(L"23");
-	m_plots.AddString(L"24");
 	m_plots.AddString(L"25");
-	m_plots.AddString(L"26");
-	m_plots.AddString(L"27");
-	m_plots.AddString(L"28");
-	m_plots.AddString(L"29");
+	m_plots.AddString(L"30");
+	m_plots.AddString(L"35");
+	m_plots.AddString(L"40");
+	m_plots.AddString(L"45");
+	m_plots.AddString(L"50");
+	m_plots.AddString(L"55");
+	m_plots.AddString(L"60");
+	m_plots.AddString(L"65");
+	m_plots.AddString(L"70");
+	m_plots.AddString(L"75");
+	m_plots.AddString(L"80");
+	m_plots.AddString(L"85");
+	m_plots.AddString(L"90");
+	m_plots.AddString(L"95");
+	m_plots.AddString(L"100");
 	m_plots.SetCurSel(0);
 
 	m_CobThreads.AddString(L"4");
@@ -246,7 +252,8 @@ void CchiaplotterDlg::OnBnClickedOk()
 void CchiaplotterDlg::OnBnClickedbtnstart()
 {
 
-	CString strPlots; /
+
+	CString strPlots; 
 	int cindexA = this->m_plots.GetCurSel();
 	this->m_plots.GetLBText(cindexA, strPlots);
 
@@ -254,7 +261,7 @@ void CchiaplotterDlg::OnBnClickedbtnstart()
 	int cindexB = this->m_CobThreads.GetCurSel();
 	this->m_CobThreads.GetLBText(cindexB, strThread);
 
-	CString strbuckets; 
+	CString strbuckets;
 	int cindexC = this->m_buckets.GetCurSel();
 	this->m_buckets.GetLBText(cindexC, strbuckets);
 
@@ -268,12 +275,16 @@ void CchiaplotterDlg::OnBnClickedbtnstart()
 		return;
 	}
 
+	if (selectedTemDir.ReverseFind('\\') != (selectedTemDir.GetLength() - 1))
+	{
+		selectedTemDir.Append(L"\\");
+	}
 	CString selectedTemDir2;
 	GetDlgItemText(IDC_TemDir2, selectedTemDir2);
-	if (selectedTemDir2.IsEmpty())
+
+	if (selectedTemDir2.ReverseFind('\\') != (selectedTemDir2.GetLength() - 1))
 	{
-		MessageBoxEx(NULL, L"Temporary directory 2 cannot be empty!", L"Alert", MB_OK, MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US));
-		return;
+		selectedTemDir2.Append(L"\\");
 	}
 
 	CString selectedFinaDir;
@@ -282,6 +293,11 @@ void CchiaplotterDlg::OnBnClickedbtnstart()
 	{
 		MessageBoxEx(NULL, L"Final directory cannot be empty!", L"Alert", MB_OK, MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US));
 		return;
+	}
+
+	if (selectedFinaDir.ReverseFind('\\') != (selectedFinaDir.GetLength() - 1))
+	{
+		selectedFinaDir.Append(L"\\");
 	}
 
 
@@ -294,6 +310,12 @@ void CchiaplotterDlg::OnBnClickedbtnstart()
 		return;
 	}
 
+	if (strPoolPublicKey.Trim().GetLength() != 48 || strPoolPublicKey.Trim().GetLength() != 62)
+	{
+		MessageBoxEx(NULL, L"Poolkey(48 bytes) | Contract Address (62 chars)", L"Alert", MB_OK, MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US));
+		return;
+	}
+
 	CString strFarmerPublicKey;
 	GetDlgItemText(IDC_FarmerPublicKye, strFarmerPublicKey);
 	if (strFarmerPublicKey.IsEmpty())
@@ -301,7 +323,23 @@ void CchiaplotterDlg::OnBnClickedbtnstart()
 		MessageBoxEx(NULL, L"Farmer public key cannot be empty!", L"Alert", MB_OK, MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US));
 		return;
 	}
-	CString cmd = L"chia_plot.exe -n " + strPlots + " -r " + strThread + " -u " + strbuckets + " -t " + selectedTemDir + " -2 " + selectedTemDir2 + " -d " + selectedFinaDir + " -p " + strPoolPublicKey + " -f " + strFarmerPublicKey;
+	CString cmd = L"chia_plot.exe -n " + strPlots + " -r " + strThread + " -u " + strbuckets + " -t " + selectedTemDir;// +" -2 " + selectedTemDir2 + " -d " + selectedFinaDir + " -p " + strPoolPublicKey + " -f " + strFarmerPublicKey;
+
+	if (!selectedTemDir2.IsEmpty())
+	{
+		cmd = cmd +" -2 " + selectedTemDir2;
+	}
+
+	cmd = cmd + " -d " + selectedFinaDir;
+	if (strPoolPublicKey.Trim().GetLength() == 48)
+	{
+		cmd = cmd + " -p " + strPoolPublicKey.Trim() + " -f " + strFarmerPublicKey.Trim();
+	}
+	else
+	{
+		cmd = cmd + " -c " + strPoolPublicKey.Trim() + " -f " + strFarmerPublicKey.Trim();
+	}
+
 	RunCmd(cmd);
 }
 
