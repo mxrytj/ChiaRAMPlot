@@ -1615,19 +1615,6 @@ ParseResult::checked_parse_arg
   }
 }
 
-inline
-void
-ParseResult::add_to_option(const std::string& option, const std::string& arg)
-{
-  auto iter = m_options->find(option);
-
-  if (iter == m_options->end())
-  {
-    throw option_not_exists_exception(option);
-  }
-
-  parse_option(iter->second, option, arg);
-}
 
 inline
 bool
